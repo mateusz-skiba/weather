@@ -20,9 +20,26 @@ class App extends React.Component {
         err: ""
     }
 
-    handleInputChange = e => {
-        this.setState({value: e.target.value})
+    componentDidUpdate() {
+        
+        const API = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=${APIkey}`
+
+        fetch(API)
+        .then(response => {
+            if (response.ok) {
+                return response
+            }
+            throw Error("Nie udało się")
+            })
+        .then(response => response.json())
+        .then(data => {
+                console.log("Tak")
+        })
+        .catch(err => {
+                console.log("Nie")
+            })
     }
+
 
     getData = () => {
         console.log(this.state)
@@ -67,9 +84,9 @@ class App extends React.Component {
             })
     }
 
-    componentDidMount(prevProps, prevState) {
-        this.getData()
-    }
+    // componentDidMount(prevProps, prevState) {
+    //     this.getData()
+    // }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.value !== this.state.value) {
