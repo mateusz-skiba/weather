@@ -2,7 +2,7 @@ import React from 'react';
 
 const View = props => {
 
-    const {value, city, country, day, data, temp, pressure, description} = props.weather
+    const {city, country, day, data, temp, pressure, description} = props.weather
 
     return ( 
         <div className="view">
